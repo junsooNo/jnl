@@ -111,7 +111,7 @@ function makeSmallMenu(largeMenu,data){
 		largeMenu.append(html)
 		
 	},function(error){
-		alert("error...")
+		alert("error...");
 	})
 }
 
