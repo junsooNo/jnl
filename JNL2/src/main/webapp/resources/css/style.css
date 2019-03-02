@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.jnl_text{width:80%; height:30px;}
+.jnl_button{width:80%; height:40px; background-color:#00B4DB; border:1px solid #00B4DB; display:inline-block; line-height:40px; font-weight:bolder;
+			border-radius:5px 5px 5px 5px; text-align:center;}
+.jnl_button_silver{width:70px; height:30px; border:1px solid #D8D8D8; font-weight:bolder; background-color:#EAEAEA; display:inline-block; line-height:30px; text-align:center;}
+			
+table{border-collapse:collapse;}
+.jnl_td_left{width:20%; height:50px; text-align:center;}
+.jnl_td_right{width:80%; height:50px; text-align:left;}

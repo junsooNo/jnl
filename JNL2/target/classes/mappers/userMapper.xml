@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.study.dao.UserDAO">
+
+	<sql id="userWhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="id != null and id != '' ">
+				AND ID = #{id}
+			</if>
+			<if test="passwd != null and passwd != '' ">
+				AND PASSWD = #{passwd}
+			</if>
+			<if test="name != null and name != '' ">
+				AND NAME = #{name}
+			</if>
+			<if test="email != null and email != '' ">
+				AND EMAIL = #{email}
+			</if>
+			<if test="gender != null and gender != '' ">
+				AND GENDER = #{gender}
+			</if>
+		</trim>
+	</sql>
+
+	<insert id="insertUser" parameterType="UserDTO">
+		INSERT INTO JNL2_USER
+		(
+			ID,
+		    PASSWD,
+		    NAME,
+		    EMAIL,
+		    GENDER,
+		    REG_DATE,
+		    MOD_DATE
+		)
+		VALUES
+		(
+			#{id},
+			#{passwd},
+			#{name},
+			#{email},
+			#{gender},
+			DEFAULT,
+			DEFAULT
+		)
+	</insert>
+	<select id="selectOneUser" parameterType="UserDTO" resultType="UserDTO">
+		SELECT
+		    ID,
+		    PASSWD,
+		    NAME,
+		    EMAIL,
+		    GENDER,
+		    REG_DATE,
+		    MOD_DATE
+		FROM
+		    JNL2_USER
+		<include refid="userWhere" />
+			
+	</select>
+	<select id="selectListUser" parameterType="UserDTO" resultType="UserDTO">
+		SELECT
+		    ID,
+		    PASSWD,
+		    NAME,
+		    EMAIL,
+		    GENDER,
+		    REG_DATE,
+		    MOD_DATE
+		FROM
+		    JNL2_USER
+		<include refid="userWhere" />
+	</select>
+	<select id="selectCountUser" parameterType="UserDTO" resultType="int">
+		SELECT
+		    COUNT(*)
+		FROM
+		    JNL2_USER
+		<include refid="userWhere" />
+	</select>
+	<delete id="deleteUser" parameterType="UserDTO">
+	
+	</delete>
+	<update id="updateUser" parameterType="UserDTO">
+	
+	</update>
+</mapper>

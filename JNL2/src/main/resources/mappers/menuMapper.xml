@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.study.dao.MenuDAO">
+
+	<sql id="menuWhere">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="menu_num != null and menu_num != '' ">
+				AND MENU_NUM = #{menu_num}
+			</if>
+			<if test="name != null and name != '' ">
+				AND NAME = #{name}
+			</if>
+			<if test="parent_menu != null and parent_menu != '' ">
+				AND PARENT_MENU = #{parent_menu}
+			</if>
+			<if test="menu_level != null and menu_level != '' ">
+				AND MENU_LEVEL = #{menu_level}
+			</if>
+			<if test="use_yn != null and use_yn != '' ">
+				AND USE_YN = #{use_yn}
+			</if>
+		</trim>
+	</sql>
+
+	<insert id="insertMenu" parameterType="MenuDTO">
+		INSERT INTO JNL2_MENU
+		(
+		     MENU_NUM
+			,NAME
+			,PARENT_MENU
+			,MENU_LEVEL
+			,REG_DATE
+			,REG_ID
+			,MOD_DATE
+			,MOD_ID
+			,USE_YN
+		)
+		VALUES
+		(
+			 JNL2_MENU_SEQ.NEXTVAL
+			,#{name}
+			,#{parent_menu}
+			,#{menu_level}
+			,DEFAULT
+			,#{reg_id}
+			,NULL
+			,NULL
+			,#{use_yn}
+		)
+	</insert>
+	<select id="selectListMenu" parameterType="MenuDTO" resultType="MenuDTO">
+		SELECT
+			MENU_NUM
+			,LPAD(' ',LEVEL*2) || NAME AS NAME
+			,PARENT_MENU
+			,MENU_LEVEL
+			,REG_DATE
+			,REG_ID
+			,MOD_DATE
+			,MOD_ID
+			,USE_YN
+		FROM
+			JNL2_MENU
+		<include refid="menuWhere" />
+		START WITH
+			PARENT_MENU IS NULL
+		CONNECT BY PRIOR
+			MENU_NUM = PARENT_MENU
+	</select>
+	<select id="selectOneMenu" parameterType="MenuDTO" resultType="MenuDTO">
+		SELECT
+			MENU_NUM
+			,LPAD(' ',LEVEL*2) || NAME AS NAME
+			,PARENT_MENU
+			,MENU_LEVEL
+			,REG_DATE
+			,REG_ID
+			,MOD_DATE
+			,MOD_ID
+			,USE_YN
+		FROM
+			JNL2_MENU
+		<include refid="menuWhere" />
+		START WITH
+			PARENT_MENU IS NULL
+		CONNECT BY PRIOR
+			MENU_NUM = PARENT_MENU
+	</select>
+</mapper>

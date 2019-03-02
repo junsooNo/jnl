@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.study.dao.LearnPostDAO">
+	<select id="selectOneLearnPost" parameterType="LearnPostDTO" resultType="LearnPostDTO">
+	
+	</select>
+	<insert id="insertLearnPost" parameterType="LearnPostDTO">
+		INSERT INTO JNL2_LEARN_POST
+		(
+			 TITLE
+			,CONTENT
+			,READ_CNT
+			,REG_DATE
+			,MOD_DATE
+			,REG_ID
+			,MENU_NUM
+		)
+		VALUES
+		(
+			#{title}
+			,#{content}
+			,#{read_cnt}
+			,#{reg_date}
+			,#{mod_date}
+			,#{reg_id}
+			,#{menu_num}
+		)
+	</insert>
+</mapper>
