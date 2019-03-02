@@ -84,7 +84,7 @@ function makeLargeMenu(){
 			makeSmallMenu($(this),menu_num);
 		})
 	},function(error){
-		alert("error...")
+		alert("error...");
 	})  
 }
 
