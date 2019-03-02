@@ -53,16 +53,6 @@ li{list-style:none;}
       <a href="#">JNL2</a>
    </div>
    <div id="center">
-   		<a href="resources/upload_image/Workbench-Build123 (2).zip">다운로드 
-   		
-   		
-   		
-   		
-   		
-   		
-   		
-   		
-   		</a>
    	  <jsp:include page="${center }" />
    </div>
    <div id="footer">
